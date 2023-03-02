@@ -1,0 +1,647 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap");
+
+/* ------------------ Global Settings --------------------------- */
+
+:root {
+  --blue: #0065FC;
+  --lightgrey: #F2F2F2;
+  --lightblue: #DEEBFF;
+}
+ 
+* {
+  font-family: "Raleway", "sans-serif";
+  box-sizing: border-box; /* box aura la taille que je lui ai attribué car sinon margin/padding modifie la taille là il va les faire rentrer dedans */
+  margin: 0; /* beaucoup d'élément ont une margin naturelle et ca peut poser pb donc on reset tout */
+  padding: 0;
+  max-width:100%;
+
+}
+
+a,
+a:visited {/* s'hérite du parent, par défaut noir */
+  color: inherit; 
+  text-decoration: none;
+}
+
+button, input, ul {
+border:none;
+list-style-type: none;
+}
+
+#wrapper{
+  padding: 0rem 3rem;
+  margin: auto;
+  max-width: 1440px;
+}
+
+
+@media (max-width: 768px) { 
+  #wrapper{
+    padding: 0;
+  }
+}
+
+/* ----------------------- Section 1 - Nav --------------------- */
+header{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+header a {
+  padding: 30px;
+  border-top: 3px solid transparent;
+  transition: 0.15s ease-in-out;
+}
+
+header a:hover, a:focus, .active-btn{ 
+  border-top-color: var(--blue);
+  color:var(--blue);
+}
+
+#logo {
+  margin-right: auto;
+  min-width: 130px;
+}
+
+.navbar-signup, .navbar-signup:visited {
+  font-weight: bold;
+  color:var(--blue);
+}
+
+.navbar-container {
+  display: flex; /* contenu dans une div, par défaut applique flex:inline (prend taille du contenu) , or on veut qu'il se comporte comme les autres élément du nav: flex */
+  flex-wrap:wrap;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {   /* breaking point pour version téléphone */
+  header > a {
+    padding: 30px 90px;
+  }
+
+  .navbar-container {
+    order: 1; /* par défaut flex order = 0 */
+    flex-basis: 100%;
+  }
+
+  .navbar-container a {
+    width: 50%;
+    text-align: center;
+    border-bottom: 3px solid rgb(248, 248, 248);
+    border-top: none;
+  }
+
+  .navbar-container a:hover, a:focus{
+    border-bottom-color: rgb(14, 14, 235);
+  }
+
+  #logo {
+    margin-left: 2rem;
+  }
+  
+}
+
+/* ----------------------- Section 2 - Research --------------------- */
+
+/* --- Search Titles -- */
+
+.research-headings{
+  margin-top:20px;
+}
+
+.searchTitle {
+  font-size: 30px;
+}
+
+.research-headings p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+@media (max-width: 768px)
+{
+  #research {
+    padding: 0 2rem;
+  }
+}
+
+
+/* --- Search bar --*/
+
+.research-form {
+  display:flex;
+  flex-direction: row;
+}
+
+.icon-location {
+  background-color: var(--lightgrey);
+  padding: 1rem 1.3rem;
+  border-radius: 1rem 0 0 1rem ;
+}
+
+#research-input {
+  border-top: 1px solid var(--lightgrey);
+  border-bottom: 1px solid var(--lightgrey);
+  padding-left: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#research-input::placeholder {
+  font-weight: bold;
+  color: grey;
+}
+
+.research-button{
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--blue);
+  border-radius: 0 1rem 1rem 0;
+  padding: 1rem 1rem 1rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+}
+
+.research-button:hover {
+  transform: scale(1.05);
+}
+
+.research-button-icon{
+  display:none;
+}
+
+@media (max-width: 768px) {
+  .research-button{
+    display:none;
+  }
+  .research-button-icon{
+    display:flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    color:var(--lightgrey);
+    background-color: var(--blue);
+    border-radius: 0 1rem 1rem 0;
+    padding-top: 1rem;
+    flex-basis: 4rem;
+    cursor: pointer;
+  }
+  
+  #research-input {
+    flex-basis: 100%;
+  }
+}
+
+/* --- Filters--*/
+
+.research-filters {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem 0rem;
+}
+
+.filters-title {
+  padding-right: 1rem;
+  margin: 8px;
+}
+
+.filters-list {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filters-list li {
+  display:flex;
+  align-items: center;
+  height: 50px;
+  border: 2px solid var(--lightgrey);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.22s ease-in-out;
+  font-weight: bold;
+}
+
+.filters-list li:hover {
+  transform:  translateY(-10%);
+}
+
+.filters-list span {
+  margin: 1rem;
+}
+
+.filters-list i {  /* on crée le rond bleu */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+  color: var(--blue);
+  background-color: var(--lightblue);
+  margin: -2px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  
+}
+.info p {
+  margin-left: 1rem;
+}
+
+.info i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid #D9D9D9;
+  border-radius: 25px;
+  color: var(--blue);
+}
+
+@media (max-width: 768px) {
+  .filters-list {
+    gap : 1rem;
+  }
+}
+
+/* ----------------------- Section 3 - Hosting --------------------- */
+
+/* --- Hosting Main --*/
+
+#hosting {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;  /*GRID de tous les hebergements */
+  column-gap: 2rem;
+  grid-template-areas: "main popular"; /* grid-column-start and end  */
+}
+
+.hosting-main , .hosting-popular{  /* main et populaire : même apparence -> DRY */
+  padding: 2rem;
+  background-color: var(--lightgrey);
+  border-radius: 30px;
+} 
+
+.hosting-main {
+  grid-area: main;
+}
+
+.hosting-title {
+  margin-bottom: 2rem;
+}
+
+.hosting-article-box{  
+  display: grid;
+  grid-template-columns: repeat(3,1fr); /*GRID  hebergement ville */
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.hosting-article-case {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.hosting-article-case:hover{
+  transform: scale(1.02);
+}
+
+.hosting-article-case > a { 
+  display:flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items:flex-start;
+  flex-wrap: wrap;
+}
+
+.hosting-article-case > figure, h3, p, .stars {
+  margin-top: 8px;
+  margin-left: 1rem;
+}
+
+.figure-article {
+  padding: 0.3rem;
+  height: 10rem;
+  width: 100%;
+}
+
+.cover-fit {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.stars {
+  margin-bottom: 8px;
+  color: var(--blue);
+}
+
+.Empty{
+  color:#d9d9d9;
+}
+
+.hosting-more {
+  margin-top: 1.8rem;
+  margin-left: 0.5rem;
+  transition: 0.2s ease-in ;
+}
+
+.hosting-more:hover {
+  transform: scale(1.01);
+  color: var(--blue);
+}
+
+
+/* --- Hosting Popular --*/
+
+.hosting-popular {
+  grid-area: popular;
+}
+
+.hosting-popular-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.popular-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popularIcon {
+  font-size: 1.7rem;
+}
+
+.hosting-popular-case {
+  background: white;
+  padding: 0.5rem;
+  border-radius: 25px;
+  transition: transform 0.25s ease-in-out;
+}
+
+.hosting-popular-case:hover {
+  transform: scale(1.02);
+}
+
+.hosting-popular-case > a {
+  display: flex;
+}
+
+.popular-description > .stars  {
+  margin-top: 3.5rem;
+  
+}
+
+.cover-fit2 {
+  border-radius: 20px 0 0 20px;
+  object-fit: cover;
+  min-width: 9rem;
+  max-width: 9rem;
+  width:9rem;
+  height: 10rem; 
+  min-height: 10rem;
+}
+
+
+@media (max-width: 1370px) {
+  
+  #hosting {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .hosting-article-case > a > h3 { 
+    font-size: 17px;
+  }
+
+  .hosting-article-case > a > p { 
+    font-size: 15px;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+  .hosting-main , .hosting-popular {
+    border-radius: 0px;
+  }
+
+  .hosting-main {
+    display: flex;
+    flex-direction: column;
+    order:2;
+    background-color: initial;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .hosting-popular {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+  }
+
+  .hosting-popular-box {
+    gap: 1rem;
+  }
+
+  .hosting-article-box {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6,1fr);
+    
+  }
+
+  .hosting-article-case {
+    box-shadow: 0 10px 30px #0000002e;
+  }
+
+  .figure-article {
+    width: 100%;
+  }
+
+  .cover-fit {
+    width: 100%;
+  }
+
+  .hosting-more {
+    margin-top: 0.5rem;
+  }
+}
+
+/* ----------------------- Section 4 - Activities --------------------- */
+#activities {
+ margin: 3rem 1.5rem 0;
+}
+
+.activities-title {
+  margin-bottom: 1rem;
+}
+
+.activities-box {
+  display: grid;
+  height: 500px;
+  margin-bottom: 50px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows:  1fr 0.2fr 0.5fr 0.3fr;
+  grid-gap: 2rem;
+}
+
+.activitiesCard {
+  display: flex;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px #0000002e;
+  cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+}
+
+
+.activitiesCard:hover {
+  transform: scale(1.02);
+}
+
+.one {
+  background-image: url("https://reservia.gaeldavid.fr/img/activities/small/reno-laithienne-QUgJhdY5Fyk-unsplash.jpg");
+}
+
+.one , .four {
+  grid-row: 1 / -1;
+}
+
+.two {
+  grid-row: 1 / 3;
+  background-image: url("https://reservia.gaeldavid.fr/img/activities/small/paul-hermann-QFTrLdQIRhI-unsplash.jpg")
+}
+
+.three {
+  grid-row: 3 / -1;
+  background-image: url("https://reservia.gaeldavid.fr/img/activities/small/kevin-hikari-rV_Qd1l-VXg-unsplash.jpg");
+}
+
+.four {
+  background-image: url("https://reservia.gaeldavid.fr/img/activities/small/kilyan-sockalingum-NR8-cBCN3aI-unsplash.jpg");
+}
+
+.five {
+  background-image: url("https://reservia.gaeldavid.fr/img/activities/small/florian-wehde-xW9e8gdotxI-unsplash.jpg");
+}
+
+.six { 
+  grid-row: 2 / -1;
+  background-image: url("https://reservia.gaeldavid.fr/img/activities/small/lena-paulin-wH2-EJoDcV0-unsplash.jpg")
+}
+
+.activitiesCard h3 {
+  background-color: white;
+  margin-top: auto;
+  margin-left: 0;
+  height: 4rem;
+  text-align: center;
+  padding: 1rem 0.2rem;
+  width: 100%;
+}
+
+@media (max-width: 1370px) {
+  .activities-box{
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .one , .two , .three , .four , .five , .six {
+    grid-row: initial;
+  }
+}
+
+@media (max-width: 768px) {
+
+  #activities {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .activities-title {
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  }
+
+  .activities-box{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+
+  .activitiesCard{
+    min-height: 200px;
+    width: auto;
+  }
+
+ 
+
+}
+
+/* ----------------------- Section 4 - Footer --------------------- */
+
+.footer{
+  
+  background-color: var(--lightgrey);
+  padding: 3rem;
+}
+
+.navFooter {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navFooter  ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: 0.2s ease-in-out;
+}
+
+.footerList li:hover {
+  transform: scale(1.02);
+  color: var(--blue);
+}
+
+@media (max-width: 768px) {
+
+  .footer{
+    padding: 2rem 3rem;
+  }
+
+  .navFooter {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .navFooter > ul {
+    gap: 1rem;
+  }
+
+}
